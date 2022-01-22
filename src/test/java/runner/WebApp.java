@@ -195,7 +195,7 @@ public class WebApp extends BaseTest {
 		}
 	}
 
-	@Test(priority = 1)
+	@Test(priority = 7)
 	public static void LocalPage() throws IOException, InterruptedException {
 		try {
 			test = extent.createTest("LocalPage");

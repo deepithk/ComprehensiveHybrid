@@ -2,6 +2,8 @@ package com.mindtree.reusable;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
@@ -39,7 +41,12 @@ public class BaseTest extends WebDriverManager {
 	{
 		TakesScreenshot ts = (TakesScreenshot) driver;
 		File source = ts.getScreenshotAs(OutputType.FILE);
-		String target = (System.getProperty("user.dir") + "/Screenshot/" + TestCaseName+System.currentTimeMillis() + ".png");
+		Date d = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+		String date = sdf.format(d);
+		String timeStamp = date.replace(" ", "_").replaceAll(":", "_").replaceAll("/", "_");
+		//System.setProperty("timeStamp", timeStamp);
+		String target = (System.getProperty("user.dir") + "/Screenshot/"+TestCaseName+ timeStamp + ".png");
 		File file=new File(target);
 		FileUtils.copyFile(source, file);
 		return target;
